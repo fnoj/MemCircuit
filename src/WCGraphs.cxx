@@ -1,6 +1,9 @@
 #include "WCGraphs.h"
 
-WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main){  
+WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TString SFile){  
+
+  bWrite = fWrite;
+  StFile = SFile;
 
   //  Sit = "Corriente Ele\351trica vs. Tiempo";
   Sit = "Corriente El\351ctrica vs.Tiempo";
@@ -107,6 +110,7 @@ WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main){
   Tab_q_i->AddFrame(ECGraph[13], new TGLayoutHints(kLHintsExpandX| kLHintsExpandY,10,10,10,10));
   Tab_f_q->AddFrame(ECGraph[14], new TGLayoutHints(kLHintsExpandX| kLHintsExpandY,10,10,10,10));
   Tab_q_f->AddFrame(ECGraph[15], new TGLayoutHints(kLHintsExpandX| kLHintsExpandY,10,10,10,10));
+
 
   TBClose = new TGTextButton(GF,"&Close");
   TBClose->Connect("Clicked()","WCGraphs",this,"Close()");
@@ -338,6 +342,27 @@ void WCGraphs::Draw(Int_t Color){
   mg[15]->GetXaxis()->SetTitle(Sf);         
   lg->Draw();
   CGraph[15]->Update();
+
+
+  if(bWrite==true){
+    File = new TFile(StFile,"RECREATE");
+    CGraph[0]->Write(Svt);
+    CGraph[1]->Write(Sft);
+    CGraph[2]->Write(Sqt);
+    CGraph[3]->Write(Sit);
+    CGraph[4]->Write(Svi);
+    CGraph[5]->Write(Siv);
+    CGraph[6]->Write(Svf);
+    CGraph[7]->Write(Sfv);
+    CGraph[8]->Write(Svq);
+    CGraph[9]->Write(Sqv);
+    CGraph[10]->Write(Sif);
+    CGraph[11]->Write(Sfi);
+    CGraph[12]->Write(Siq);
+    CGraph[13]->Write(Sqi);
+    CGraph[14]->Write(Sfq);
+    CGraph[15]->Write(Sqf);
+  }
 
 }
 

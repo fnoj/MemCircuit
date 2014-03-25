@@ -31,11 +31,14 @@ Main Graphical Interface of aplication MemCircuit
 
 #include <RQ_OBJECT.h>
 #include <TGFrame.h>
+#include <TBrowser.h>
 #include <TGFileDialog.h>
 #include <TGNumberEntry.h>
 #include <TRootEmbeddedCanvas.h>
 #include <TCanvas.h>
 #include <TString.h>
+#include <TFile.h>
+#include <TGTextEntry.h>
 #include <TGIcon.h>
 #include <TGClient.h>
 #include <TApplication.h>
@@ -71,6 +74,8 @@ class WMainApp{
   void Run();
   void SignalTypeSelect();
   void CreateScript();
+  void CiOpen();
+  void SaveClicked();
   TTimer *Count; 
 
  private:
@@ -80,6 +85,7 @@ class WMainApp{
   TGVerticalFrame *VFO, *VFPar;
   TGHorizontalFrame *GChVc, *GChfc, *GChVd, *GChfd;                        // Childs TGGroupFrame Voltage, Frequence
   TGHorizontalFrame *GChiC, *GCht0, *GChtf, *GChnd, *GChl;                 // Childs TGGroupFrame ICurrent, t0, tf, number_repeats, Steps
+  TGHorizontalFrame *GChSave;                                              // Childs TGGroupFrame Option Save   
 
   TGGroupFrame *GF1, *GF2, *GF3;                                                 // Main TGGroupFrame 
   
@@ -92,11 +98,14 @@ class WMainApp{
   TGHorizontalFrame *GFDraw, *GChVf, *GChff, *CiGChSignal;
 
   TGVButtonGroup *VBGMem;
+  TGCheckButton *CBSave;
+  TGTextEntry *TESave;
   
   TGLabel *ldl, *ldV, *lVc, *lfc, *liC, *lt0, *ltf, *ll, *lnd, *la, *lb, *lc, *lVf, *lff, *ldf;
   
   TGFileDialog *fiInfo;
- 
+
+  TBrowser *TB1; 
   Int_t MemFunction;
   Int_t kIDSignal; //Id Pulse Select
   VSave *save;
@@ -113,6 +122,7 @@ class WMainApp{
   TGVerticalFrame  *CiVFO1, *CiVFO2, *CiVFDevices;
   
   TGTextButton  *CiTGBClear, *CiTGBExit, *CiTGBRun;
+  TGTextButton  *CiTGBOpen;
   TGGroupFrame  *CiGF1, *CiGF2;             
   TGRadioButton *CiRBSignal[3];
 

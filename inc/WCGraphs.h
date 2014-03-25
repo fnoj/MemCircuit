@@ -28,6 +28,7 @@ Graphical Interface for creation Windows with results of analysis
 #define MEMCIRCUIT_WCGraphs
 
 #include <TGFrame.h>
+#include <TFile.h>
 #include <TGWindow.h>
 #include <TCanvas.h>
 #include <TLegend.h>
@@ -61,7 +62,7 @@ class WCGraphs{
   Double_t x0[2001], x1[2001], x2[2001], x3[2001], x4[2001], x5[2001], x6[2001], x7[2001], x8[2001], x9[2001];
   
  public:
-  WCGraphs(const TGWindow *p,const TGWindow *main);
+  WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TString SFile);
   void SetN(Int_t NPoints){fNPoints=NPoints;}
   void Setf(Double_t f){ff=f;}
   void SetV(Double_t V){fV=V;}
@@ -71,6 +72,10 @@ class WCGraphs{
   TMultiGraph *mg[16];
   TGraph *gr[16];
   Char_t LabelGraph[20];
+  TFile *File;
+
+  Bool_t bWrite;
+  TString StFile;
 
   const char *Sp;
   const char *Svt;

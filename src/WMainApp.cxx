@@ -104,9 +104,13 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   CiTGBClear->Connect("Clicked()","WMainApp",this,"CiClear()");
 
   CiTGBExit = new TGTextButton(CiGF2,"&Exit","gApplication->Terminate(0)");
+
+  CiTGBOpen= new TGTextButton(CiGF2,"&Open");
+  CiTGBOpen->Connect("Clicked()","WMainApp",this,"CiOpen()");
   
   CiGF2->AddFrame(CiTGBRun,new TGLayoutHints(kLHintsExpandX | kLHintsCenterY ,50,50,2,2));
   CiGF2->AddFrame(CiTGBClear,new TGLayoutHints(kLHintsExpandX | kLHintsCenterY ,50,50,2,2));
+  CiGF2->AddFrame(CiTGBOpen,new TGLayoutHints(kLHintsExpandX | kLHintsCenterY ,50,50,2,2)); 
   CiGF2->AddFrame(CiTGBExit,new TGLayoutHints(kLHintsExpandX | kLHintsCenterY ,50,50,2,2));
     
   CiVFO1->AddFrame(CiGF1, new TGLayoutHints(kLHintsExpandX | kLHintsCenterY)); 
@@ -220,6 +224,15 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   NEnd->SetLimitValues(500,2000);
   GChnd->AddFrame(lnd,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
   GChnd->AddFrame(NEnd,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
+
+  GChSave = new TGHorizontalFrame(VFPar,0); 
+  CBSave= new TGCheckButton(GChSave,"Save");
+  CBSave->Connect("Clicked()","WMainApp",this,"SaveClicked()");
+  TESave = new TGTextEntry(GChSave);
+  TESave->SetDefaultSize(250,20);
+  TESave->SetEnabled(false);
+  GChSave->AddFrame(CBSave);
+  GChSave->AddFrame(TESave);
     
   //Add sons and parents________________________________________________________________________
   GF3->AddFrame(GChVc, new TGLayoutHints(kLHintsCenterX,10,2,2,2)); 
@@ -237,6 +250,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   VFPar->AddFrame(GF3,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
   VFPar->AddFrame(GF1,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
   VFPar->AddFrame(GF2,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
+  VFPar->AddFrame(GChSave,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
 
   HF->AddFrame(CiVFO1,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
   HF->AddFrame(CiVFO2,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
@@ -542,6 +556,11 @@ void WMainApp::CiResize(Int_t X){
     CCircuit->Range(-30,-20,X+10,20);
     CCircuit->Update();
   }
+}
+
+void WMainApp::CiOpen(){
+  cout<<"Open TBrowser"<<endl;
+  TB1 = new TBrowser();
 }
 
 void WMainApp::CiClear(){
@@ -900,7 +919,13 @@ void WMainApp::CreateScript(){
   system("octave -q mem.m");  //Execute Script Octave */
 
   if(kColor==1){
-    Graphs = new WCGraphs(gClient->GetRoot(),TMF1);
+    TString SFile = TESave->GetDisplayText()+".root";
+    if(CBSave->IsOn()==true){
+      Graphs = new WCGraphs(gClient->GetRoot(),TMF1,true,SFile);
+    }
+    else{
+      Graphs = new WCGraphs(gClient->GetRoot(),TMF1,false,SFile);
+    }
     Graphs->SetN(save->GetfnPoints());
   }
 
@@ -909,9 +934,6 @@ void WMainApp::CreateScript(){
   Graphs->Draw(kColor);
 
   kColor++;  
-  /* cout<<"f: "<<f<<endl; */
-  /* cout<<"V: "<<V<<endl; */
-
   if(V > save->GetfV0()){
     V = V - save->GetfDeltaV();
   }
@@ -924,7 +946,20 @@ void WMainApp::CreateScript(){
       WCPro->Close();
       Graphs->SetHidden(false);
       Count->TurnOff();
+      CBSave->SetDown(false);
+      TESave->SetEnabled(false);
     }
+  }
+}
+
+void WMainApp::SaveClicked(){
+  if(CBSave->IsOn()==true){
+    CBSave->SetDown(true); 
+    TESave->SetEnabled(true);
+  }
+  if(CBSave->IsOn()==false){
+    CBSave->SetDown(false);
+    TESave->SetEnabled(false);
   }
 }
 
