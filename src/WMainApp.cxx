@@ -149,7 +149,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
 
   GChVf = new TGHorizontalFrame(GF3,0); 
   lVf = new TGLabel(GChVf,"Vf"); 
-  NEVf = new TGNumberEntry(GChVf,1); 
+  NEVf = new TGNumberEntry(GChVf,2); 
   NEVf->SetNumStyle(TGNumberFormat::kNESRealOne); 
   NEVf->SetNumAttr(TGNumberFormat::kNEANonNegative); 
   GChVf->AddFrame(lVf, new TGLayoutHints(kLHintsCenterX,2,2,2,2)); 
@@ -175,7 +175,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
 
   GChff = new TGHorizontalFrame(GF1,0); 
   lff = new TGLabel(GChff,"ff"); 
-  NEff = new TGNumberEntry(GChff,1); 
+  NEff = new TGNumberEntry(GChff,2); 
   NEff->SetNumStyle(TGNumberFormat::kNESRealOne); 
   NEff->SetNumAttr(TGNumberFormat::kNEANonNegative); 
   GChff->AddFrame(lff, new TGLayoutHints(kLHintsCenterX,2,2,2,2)); 
@@ -563,7 +563,15 @@ void WMainApp::CiOpen(){
   TB1 = new TBrowser();
 }
 
+void WMainApp::ClearScript(){
+  script.close();
+  script.open("mem.m");
+}
+
 void WMainApp::CiClear(){
+  WMainApp::ClearScript();
+  variables.close();
+  variables.open("var.mat");
   CCircuit->SetEditable(true);
   kDevice=0;
   kMesh=0;
@@ -582,10 +590,6 @@ void WMainApp::CiClear(){
   CCircuit->Clear();
   CCircuit->Range(-30,-20,30,20);
   CCircuit->Update();
-  script.close();
-  script.open("mem.m");
-  variables.close();
-  variables.open("var.mat");
   save->SetfkIdR(0);
   save->SetfkIdC(0);
   save->SetfkIdL(0);
@@ -603,7 +607,6 @@ void WMainApp::CiClear(){
   CiPBMR->SetEnabled(true);
   CiTGBRun->SetState(kButtonDisabled);
 }
-
 
 void WMainApp::Run(){
   if(kDevice==0){cout<<"You didn't included Devices to Pad."<<endl;}
@@ -945,6 +948,7 @@ void WMainApp::CreateScript(){
     else{
       WCPro->Close();
       Graphs->SetHidden(false);
+      WMainApp::ClearScript();
       Count->TurnOff();
       CBSave->SetDown(false);
       TESave->SetEnabled(false);

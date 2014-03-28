@@ -76,6 +76,7 @@ class WMainApp{
   void CreateScript();
   void CiOpen();
   void SaveClicked();
+  void ClearScript();
   TTimer *Count; 
 
  private:
