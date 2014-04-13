@@ -1,7 +1,6 @@
 #include "WMainApp.h"
 
 using namespace std;
-const Double_t PI = 3.1415;
 
 WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variables("var.mat"){
   
@@ -273,7 +272,8 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   voltage->Draw();
   CCircuit->SetEditable(false);
   save = new VSave();
-  Count = new TTimer(1,true);
+  Count = new TTimer(0.1,true);
+  WScript = new TTimer(0.1,true);
   Count->Connect("Timeout()","WMainApp",this,"CreateScript()");
  
   VFMain->AddFrame(HF,new TGLayoutHints(kLHintsCenterX,3,3,3,3));
@@ -701,7 +701,7 @@ void WMainApp::CreateScript(){
     //////////////////////////////////////////////////////
     //fi
     script << "fi = @(fi,t)[fi(1),(4*V/(pi))*(0";
-    for(int j=1;j<=10;j+=j+2){
+    for(int j=1;j<=50;j+=j+2){
       script<< "+sin("<<j<<"*omega*t)/"<<j;
     }
     script<<")];" << endl;
@@ -816,7 +816,7 @@ void WMainApp::CreateScript(){
     //fi
     int k=0;
     script << "fi =@(x,t)[x(2),V*(0";
-    for(int j=1;j<=10;j=j+2){
+    for(int j=1;j<=50;j=j+2){
       k++;
       script<<"+2*sin("<<j<<"*omega*t)/("<<j<<")-sin(2*"<<k<<"*omega*t)/"<<k; 
     }
@@ -917,9 +917,10 @@ void WMainApp::CreateScript(){
       script<<"w=[w,y];"<<endl;
     }
   }
-
+  script << " delete dtest.dat"<<endl;
   script << "dlmwrite('dtest.dat',w,' ');\n"<<endl;
   system("octave -q mem.m");  //Execute Script Octave */
+
 
   if(kColor==1){
     TString SFile = TESave->GetDisplayText()+".root";
@@ -965,6 +966,11 @@ void WMainApp::SaveClicked(){
     CBSave->SetDown(false);
     TESave->SetEnabled(false);
   }
+}
+
+void WMainApp::Stop(){
+  Count->TurnOff();
+  Count->Reset();
 }
 
 WMainApp::~WMainApp(){

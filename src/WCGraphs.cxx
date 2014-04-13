@@ -5,35 +5,34 @@ WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TStrin
   bWrite = fWrite;
   StFile = SFile;
 
-  //  Sit = "Corriente Ele\351trica vs. Tiempo";
-  Sit = "Corriente El\351ctrica vs.Tiempo";
-  Svt = "Diferencia de Potencial vs. Tiempo";
-  Sqt = "Carga El\351ctrica vs. Tiempo";
-  Sft = "Flujo Magn\351tico vs. Tiempo";
+  Sit = "Electric Current vs.Time";
+  Svt = "Potencial Difference vs. Time";
+  Sqt = "Electric Charge vs. Time";
+  Sft = "Flux vs. Time";
 
-  Siv = "Corriente El\351ctrica vs. Diferencia de Potencial"; 
-  Svi = "Diferencia de Potencial vs. Corriente El\351ctrica"; 
+  Siv = "Electric Current vs. Potencial Difference"; 
+  Svi = "Potencial Difference vs. Electric Current"; 
   
-  Sfv = "Flujo Magn\351tico vs. Diferencia de Potencial";
-  Svf = "Diferencia de Potencial vs. Flujo Magn\351tico";
+  Sfv = "Flux vs. Potencial Difference";
+  Svf = "Potencial Difference vs. Flux";
   
-  Sqv = "Carga El\351ctrica vs. Diferencia de Potencial";
-  Svq = "Diferencia de Potencial vs. Carga El\351ctrica";
+  Sqv = "Electric Charge vs. Potencial Difference";
+  Svq = "Potencial Difference vs. Electric Charge";
   
-  Sfi = "Flujo Magn\351tico vs. Corriente El\351ctrica";
-  Sif = "Corriente El\351ctrica vs. Flujo Magn\351tico";
+  Sfi = "Flux vs. Electric Current";
+  Sif = "Electric Current vs. Flux";
   
-  Siq = "Corriente El\351ctrica vs. Carga El\351ctrica";
-  Sqi = "Carga El\351ctrica vs. Corriente El\351ctrica";
+  Siq = "Electric Current vs. Electric Charge";
+  Sqi = "Electric Charge vs. Electric Current";
 
-  Sfq = "Flujo Magn\351tico vs. Carga El\351ctrica";
-  Sqf = "Carga El\351ctrica vs. Flujo Magn\351tico";
+  Sfq = "Flux vs. Electric Charge";
+  Sqf = "Electric Charge vs. Flux";
   
-  Si = "Corriente El\351ctrica [A]";
-  St = "Tiempo [s]";
-  Sq = "Carga El\351ctrica [C]";
-  Sf = "Flujo Magn\351tico [Wb]";
-  Sv = "Diferencia de Potencial [V]";
+  Si = "Electric Current [A]";
+  St = "Time [s]";
+  Sq = "Electric Charge [C]";
+  Sf = "Flux [Wb]";
+  Sv = "Potencial Difference [V]";
   
   
   fWCGraphs = new TGTransientFrame(p,main);
@@ -60,22 +59,22 @@ WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TStrin
   TGCompositeFrame *Tab_f_q = Tabs->AddTab("f vs. q");
   TGCompositeFrame *Tab_q_f = Tabs->AddTab("q vs. f");
 
-  ECGraph[0] = new TRootEmbeddedCanvas("ECGraph0",Tab_v_t,1050,530);
-  ECGraph[1] = new TRootEmbeddedCanvas("ECGraph1",Tab_f_t,1050,530);
-  ECGraph[2] = new TRootEmbeddedCanvas("ECGraph2",Tab_q_t,1050,530);
-  ECGraph[3] = new TRootEmbeddedCanvas("ECGraph3",Tab_i_t,1050,530);
-  ECGraph[4] = new TRootEmbeddedCanvas("ECGraph4",Tab_v_i,1050,530);
-  ECGraph[5] = new TRootEmbeddedCanvas("ECGraph5",Tab_i_v,1050,530);
-  ECGraph[6] = new TRootEmbeddedCanvas("ECGraph6",Tab_v_f,1050,530);
-  ECGraph[7] = new TRootEmbeddedCanvas("ECGraph7",Tab_f_v,1050,530);
-  ECGraph[8] = new TRootEmbeddedCanvas("ECGraph8",Tab_v_q,1050,530);
-  ECGraph[9] = new TRootEmbeddedCanvas("ECGraph9",Tab_q_v,1050,530);
-  ECGraph[10] = new TRootEmbeddedCanvas("ECGraph10",Tab_i_f,1050,530);
-  ECGraph[11] = new TRootEmbeddedCanvas("ECGraph11",Tab_f_i,1050,530);
-  ECGraph[12] = new TRootEmbeddedCanvas("ECGraph12",Tab_i_q,1050,530);
-  ECGraph[13] = new TRootEmbeddedCanvas("ECGraph13",Tab_q_i,1050,530);
-  ECGraph[14] = new TRootEmbeddedCanvas("ECGraph14",Tab_f_q,1050,530);
-  ECGraph[15] = new TRootEmbeddedCanvas("ECGraph15",Tab_q_f,1050,530);
+  ECGraph[0] = new TRootEmbeddedCanvas("v vs. t",Tab_v_t,1050,530);
+  ECGraph[1] = new TRootEmbeddedCanvas("f vs. t",Tab_f_t,1050,530);
+  ECGraph[2] = new TRootEmbeddedCanvas("q vs. t",Tab_q_t,1050,530);
+  ECGraph[3] = new TRootEmbeddedCanvas("i vs. t",Tab_i_t,1050,530);
+  ECGraph[4] = new TRootEmbeddedCanvas("v vs. i",Tab_v_i,1050,530);
+  ECGraph[5] = new TRootEmbeddedCanvas("i vs. v",Tab_i_v,1050,530);
+  ECGraph[6] = new TRootEmbeddedCanvas("v vs. f",Tab_v_f,1050,530);
+  ECGraph[7] = new TRootEmbeddedCanvas("f vs. v",Tab_f_v,1050,530);
+  ECGraph[8] = new TRootEmbeddedCanvas("v vs. q",Tab_v_q,1050,530);
+  ECGraph[9] = new TRootEmbeddedCanvas("q vs. v",Tab_q_v,1050,530);
+  ECGraph[10] = new TRootEmbeddedCanvas("i vs. f",Tab_i_f,1050,530);
+  ECGraph[11] = new TRootEmbeddedCanvas("f vs. i",Tab_f_i,1050,530);
+  ECGraph[12] = new TRootEmbeddedCanvas("i vs. q",Tab_i_q,1050,530);
+  ECGraph[13] = new TRootEmbeddedCanvas("q vs. i",Tab_q_i,1050,530);
+  ECGraph[14] = new TRootEmbeddedCanvas("f vs. q",Tab_f_q,1050,530);
+  ECGraph[15] = new TRootEmbeddedCanvas("q vs. f",Tab_q_f,1050,530);
 
   CGraph[0] = ECGraph[0]->GetCanvas();
   CGraph[1] = ECGraph[1]->GetCanvas();

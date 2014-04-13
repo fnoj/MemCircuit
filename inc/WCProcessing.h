@@ -29,6 +29,7 @@ Window with message "Processing..."
 
 #include <TGFrame.h>
 #include <TGLabel.h>
+#include <TGClient.h>
 #include <TGWindow.h>
 #include <RQ_OBJECT.h>
 
@@ -37,11 +38,12 @@ class WCProcessing{
   RQ_OBJECT("WCProcessing");
    
  private:
-  TGTransientFrame *fWCProcessing;
   TGHorizontalFrame *GF;
-  
+
  public:
   WCProcessing(const TGWindow *p,const TGWindow *main);
+  TGTransientFrame *fWCProcessing;
+  TGTextButton  *TBStop;
   TGLabel *TLProcessing;
   void Close();
   ~WCProcessing();
