@@ -148,7 +148,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
 
   GChVf = new TGHorizontalFrame(GF3,0); 
   lVf = new TGLabel(GChVf,"Vf"); 
-  NEVf = new TGNumberEntry(GChVf,2); 
+  NEVf = new TGNumberEntry(GChVf,1); 
   NEVf->SetNumStyle(TGNumberFormat::kNESRealOne); 
   NEVf->SetNumAttr(TGNumberFormat::kNEANonNegative); 
   GChVf->AddFrame(lVf, new TGLayoutHints(kLHintsCenterX,2,2,2,2)); 
@@ -174,7 +174,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
 
   GChff = new TGHorizontalFrame(GF1,0); 
   lff = new TGLabel(GChff,"ff"); 
-  NEff = new TGNumberEntry(GChff,2); 
+  NEff = new TGNumberEntry(GChff,1); 
   NEff->SetNumStyle(TGNumberFormat::kNESRealOne); 
   NEff->SetNumAttr(TGNumberFormat::kNEANonNegative); 
   GChff->AddFrame(lff, new TGLayoutHints(kLHintsCenterX,2,2,2,2)); 
@@ -571,7 +571,7 @@ void WMainApp::ClearScript(){
 void WMainApp::CiClear(){
   WMainApp::ClearScript();
   variables.close();
-  variables.open("var.mat");
+  variables.open("var.mat"); 
   CCircuit->SetEditable(true);
   kDevice=0;
   kMesh=0;
@@ -654,7 +654,7 @@ void WMainApp::CreateScript(){
       script<<"w=[w,y];"<<endl;
     }
     if((save->GetfkIdLm()==0 && save->GetfkIdL()==0) && (save->GetfkIdCm()!=0 || save->GetfkIdC()!=0)){ //Rm-Cm-S
-      script<<"q = @(q,t)[q(1),(V*sin(omega*t)/("<<save->RmFunc1<<"))-(q(1)/("<<save->CmFunc1<<"))];"<<endl;
+      script<<"q = @(q,t)[q(1),(V*sin(omega*t)/("<<save->RmFunc1<<"))-( q(1)/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<")))];"<<endl;
       script<<"y = lsode(q,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -675,8 +675,8 @@ void WMainApp::CreateScript(){
       script<<"y = lsode(ic,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
-    if((save->GetfkIdLm()==0 && save->GetfkIdL()==0) && (save->GetfkIdCm()!=0 || save->GetfkIdC()!=0)){ // CmRm
-      script<<"ic = @(q,t)[q(2),(-V*sin(omega*t)*("<<save->RmFunc2<<")/("<<save->RmFunc1<<")^2) + omega*V*cos(omega*t)/("<<save->RmFunc1<<") + (q(1)*("<<save->CmFunc2<<"))/("<<save->CmFunc1<<")^2 - q(2)/("<<save->CmFunc1<<")];"<<endl;
+    if((save->GetfkIdLm()==0 && save->GetfkIdL()==0) && (save->GetfkIdCm()!=0 || save->GetfkIdC()!=0)){ // RmCm
+      script<<"ic = @(q,t)[q(2),((-V*sin(omega*t)*("<<save->RmFunc2<<"))/("<<save->RmFunc1<<")^2) + (omega*V*cos(omega*t)/("<<save->RmFunc1<<")) + (q(1)*( ("<<save->CmFunc2<<")*("<<save->RmFunc1<<") + ("<<save->CmFunc1<<")*("<<save->RmFunc2<<") )/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<"))^2) - (q(2)/( ("<<save->RmFunc1<<")*("<<save->CmFunc1<<"))) ];"<<endl;
       script<<"y = lsode(ic,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -732,7 +732,7 @@ void WMainApp::CreateScript(){
       for(Int_t j=1;j<=50;j=j+2){
 	script<<"+sin("<<j<<"*omega*t)/("<<j<<")";
       }
-      script<<"))/("<<save->RmFunc1<<"))-(q(1)/("<<save->CmFunc1<<"))];"<<endl;
+      script<<"))/("<<save->RmFunc1<<"))-(q(1)/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<")))];"<<endl;
       script<<"y = lsode(q,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -782,7 +782,7 @@ void WMainApp::CreateScript(){
       for(int j=1;j<=50;j=j+2){
 	script<<"+cos("<<j<<"*omega*t)";
       }
-      script <<")/("<<save->RmFunc1<<") + (q(1)*("<<save->CmFunc2<<"))/("<<save->CmFunc1<<")^2 - q(2)/("<<save->CmFunc1<<")];"<<endl;
+      script <<")/("<<save->RmFunc1<<") + (q(1)*( ("<<save->CmFunc2<<")*("<<save->RmFunc1<<") + ("<<save->CmFunc1<<")*("<<save->RmFunc2<<") )/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<"))^2) - (q(2)/( ("<<save->RmFunc1<<")*("<<save->CmFunc1<<"))) ];"<<endl;
       script<<"y = lsode(ic,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -848,7 +848,7 @@ void WMainApp::CreateScript(){
       for(Int_t j=1;j<=50;j=j+2){
 	script<<"+2*sin("<<j<<"*omega*t)/("<<j<<")-2*sin("<<j+1<<"*omega*t)/("<<j+1<<")";
       }
-      script << ")/("<<save->RmFunc1<<"))-(q(1)/("<<save->CmFunc1<<"))];"<<endl;
+      script << ")/("<<save->RmFunc1<<"))-(q(1)/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<")))];"<<endl;
       script<<"y = lsode(q,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -898,7 +898,7 @@ void WMainApp::CreateScript(){
       for(int j=1;j<=50;j=j+2){
 	script<<"+cos("<<j<<"*omega*t)-cos("<<j+1<<"*omega*t)";
       }
-      script << ")/("<<save->RmFunc1<<") + (q(1)*("<<save->CmFunc2<<"))/("<<save->CmFunc1<<")^2 - q(2)/("<<save->CmFunc1<<")];"<<endl;
+      script << ")/("<<save->RmFunc1<<") + (q(1)*( ("<<save->CmFunc2<<")*("<<save->RmFunc1<<") + ("<<save->CmFunc1<<")*("<<save->RmFunc2<<") )/(("<<save->CmFunc1<<")*("<<save->RmFunc1<<"))^2) - (q(2)/( ("<<save->RmFunc1<<")*("<<save->CmFunc1<<"))) ];"<<endl;
       script<<"y = lsode(ic,[q0 0],t);"<<endl;
       script<<"w=[w,y];"<<endl;
     }
@@ -930,9 +930,9 @@ void WMainApp::CreateScript(){
     else{
       Graphs = new WCGraphs(gClient->GetRoot(),TMF1,false,SFile);
     }
-    Graphs->SetN(save->GetfnPoints());
   }
 
+  Graphs->SetN(save->GetfnPoints());
   Graphs->SetV(V);
   Graphs->Setf(f);
   Graphs->Draw(kColor);

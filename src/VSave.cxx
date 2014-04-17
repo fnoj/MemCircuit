@@ -170,6 +170,7 @@ void VSave::Clear(){
   CmFunc1=" ";
   CmFunc2=" ";
   CmFunc3=" ";
+  RmFlux=" ";
 }
 
 VSave::~VSave(){

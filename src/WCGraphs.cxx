@@ -132,7 +132,6 @@ void WCGraphs::Draw(Int_t Color){
   sprintf(LabelGraph,"f:%4.2f[Hz] V:%4.2f[V]",ff,fV); 
   infile.open("dtest.dat");
   
-  //Asing Variables
   Int_t j=0;
   while(!infile.eof()){
     j++;
@@ -145,9 +144,7 @@ void WCGraphs::Draw(Int_t Color){
     infile >> x6[j];
     infile >> x7[j];
     infile >> x8[j];
-    //Tomar Valores Máximos 
   }
-  infile.close();
 
   CGraph[0]->cd();
   CGraph[0]->SetGrid(); 
