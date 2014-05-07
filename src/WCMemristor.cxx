@@ -34,7 +34,7 @@ WCMemristor::WCMemristor(const TGWindow *p,const TGWindow *main){
   
   GChb = new TGHorizontalFrame(GChCoe,0);  
   lb = new TGLabel(GChb,"b"); 
-  NEb = new TGNumberEntry(GChb,0.5);  
+  NEb = new TGNumberEntry(GChb,0.001);  
   NEb->SetState(true); 
   NEb->SetNumAttr(TGNumberFormat::kNEANonNegative);  
   GChb->AddFrame(lb, new TGLayoutHints(kLHintsLeft,2,2,2,2)); 
@@ -42,7 +42,7 @@ WCMemristor::WCMemristor(const TGWindow *p,const TGWindow *main){
   
   GChc = new TGHorizontalFrame(GChCoe,0);  
   lc = new TGLabel(GChc,"c"); 
-  NEc = new TGNumberEntry(GChc,0.5);  
+  NEc = new TGNumberEntry(GChc,0.001);  
   NEc->SetState(false); 
   NEc->SetNumAttr(TGNumberFormat::kNEANonNegative);  
   GChc->AddFrame(lc, new TGLayoutHints(kLHintsLeft,2,2,2,2)); 

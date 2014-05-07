@@ -565,7 +565,7 @@ void WMainApp::CiOpen(){
 
 void WMainApp::ClearScript(){
   script.close();
-  script.open("mem.m");
+  //  script.open("mem.m");
 }
 
 void WMainApp::CiClear(){

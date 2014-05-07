@@ -21,7 +21,9 @@ VSave::VSave(){
 void VSave::AddMemristor(Int_t MRFunction, Double_t a, Double_t b, Double_t c,Int_t kRm){
   kIdRm++;
   TString memEq=" ", memEq2=" ", memEq3=" ";
-  faRm[kIdRm]=a;   fbRm[kIdRm]=b;   fcRm[kIdRm]=c; 
+  faRm[kIdRm]=a;   
+  fbRm[kIdRm]=b;   
+  fcRm[kIdRm]=c; 
   Char_t IntStr[2];
   sprintf(IntStr,"%d",kRm);
   TString StrIdRm(IntStr);
@@ -30,28 +32,48 @@ void VSave::AddMemristor(Int_t MRFunction, Double_t a, Double_t b, Double_t c,In
     memEq="+aRm"+StrIdRm+"*exp(bRm"+StrIdRm+"*q(1))"; 
     memEq2="+aRm"+StrIdRm+"*bRm"+StrIdRm+"*q(2)*exp(bRm"+StrIdRm+"*q(1))"; 
     memEq3="+aRm"+StrIdRm+"*exp(bRm"+StrIdRm+"*q(2))";
-    RmFlux = RmFlux+"+(aRm"+StrIdRm+"/bRm"+StrIdRm+")*(exp(bRm"+StrIdRm+"*q(1)) - exp(bRm"+StrIdRm+"*q0))";
+    if(b==0){
+      RmFlux = RmFlux+"+0";
+    }
+    else{
+      RmFlux = RmFlux+"+(aRm"+StrIdRm+"/bRm"+StrIdRm+")*(exp(bRm"+StrIdRm+"*q(1)) - exp(bRm"+StrIdRm+"*q0))";
+    }
   }
 
   if(MRFunction==1){
     memEq="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(1)^2"; 
     memEq2="+2*bRm"+StrIdRm+"*q(1)*q(2)"; 
     memEq3="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(2)^2";
-    RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^3)/3) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^3)/3)) ";
+    if(b==0){
+      RmFlux = RmFlux+"+0";
+    }
+    else{
+      RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^3)/3) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^3)/3)) ";
+    }
   }
 
   if(MRFunction==2){
     memEq="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(1)"; 
     memEq2="+bRm"+StrIdRm+"*q(2)"; 
     memEq3="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(2)";
-    RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^2)/2) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^2)/2)) ";
+    if(b==0){
+      RmFlux = RmFlux+"+0";
+    }
+    else{
+      RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^2)/2) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^2)/2)) ";
+    }
   }
 
   if(MRFunction==3){
     memEq="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(1)^2 + cRm"+StrIdRm+"*q(1)^4"; 
     memEq2="+2*q(2)*(bRm"+StrIdRm+" + 2*cRm"+StrIdRm+"*q(1))"; 
     memEq3="+aRm"+StrIdRm+" + bRm"+StrIdRm+"*q(2)^2 + cRm"+StrIdRm+"*q(2)^4";
-    RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^3)/3) + (cRm"+StrIdRm+"*(q(1)^5)/5) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^2)/2) + (cRm"+StrIdRm+"*(q(1)^5)/5))";
+    if(b==0 && c==0){
+      RmFlux = RmFlux+"+0";
+    }
+    else{
+      RmFlux=RmFlux+"+(aRm"+StrIdRm+"*q(1))+(bRm"+StrIdRm+"*(q(1)^3)/3) + (cRm"+StrIdRm+"*(q(1)^5)/5) - ((aRm"+StrIdRm+"*q0)+(bRm"+StrIdRm+"*(q0^2)/2) + (cRm"+StrIdRm+"*(q(1)^5)/5))";
+    }
   }
 
   if(MRFunction==4){
