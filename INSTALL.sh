@@ -9,16 +9,20 @@ then
     echo "You need install ROOT framework!"
 else
     echo "ROOT is Installed!"
-    ans="`dpkg -l | grep octave3.2`"
+    ans="`dpkg -l | grep octave`"
     if [ "${ans:-NULL}" = "NULL" ]; 
     then
-	echo "You need install Octave3.2 package!"
+	echo "You need install Octave package!"
+	echo "For install execute:"
+	echo "$sudo apt-get install octave"
     else
-	echo "Octave3.2 is Installed!"
+	echo "Octave is Installed!"
         ans="`dpkg -l | grep xutils-dev`"
 	if [ "${ans:-NULL}" = "NULL" ]; 
 	then
 	    echo "You need install xutils-dev package!"
+	    echo "For install execute:"
+	    echo "$sudo apt-get install xutils-dev"
 	else
 	    echo "xutils-dev is Installed!"
 	    echo " "
