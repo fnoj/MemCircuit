@@ -1,9 +1,9 @@
 #bin/bash
 clear
 echo "Verifying Dependencies...."
-DIR="/usr/share/memcircuit"
+DIR="`pwd`"
 BIN="/usr/bin"
-ans="`find /usr/bin/ -iname root`"    
+ans="$ROOTSYS"    
 if [ "${ans:-NULL}" = "NULL" ]; 
 then
     echo "You need install ROOT framework!"
@@ -32,14 +32,13 @@ else
 	    echo "Compiling ..."
 	    make
 	    make clean	   
-	    sudo mkdir -p $DIR
-	    sudo cp  ../MemCircuit*/ $DIR
 	    echo " "
 	    echo " "
 	    echo "Compiling Successful!"
 	    echo " "
 	    echo "For you finish installation, you need to be root user!"
-	    sudo ln -s $DIR/MemCircuit /usr/bin/memcircuit
+	    echo "Creating link!"
+	    sudo ln -f -s $DIR/MemCircuit /usr/bin/memcircuit
 	    echo "Installation Successful!"
 	    echo "For run MemCircuit from terminal execute:"
 	    echo "$ memcircuit"
