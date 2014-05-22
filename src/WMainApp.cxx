@@ -10,7 +10,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   TMF1 = new TGMainFrame(p,w,h);
   TMF1->SetWindowName("MemCircuit");
   TMF1->SetCleanup(kDeepCleanup);
-  TMF1->SetIconPixmap("icons/icon_memcircuit.eps");
+  TMF1->SetIconPixmap("/usr/share/memcircuit/icon_memcircuit.eps");
   TMF1->SetIconName("MemCircuit");
   TMF1->SetWMSizeHints(w,h,w,h,1,1);
     
@@ -30,30 +30,30 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   CiHFDevClas = new TGHorizontalFrame(CiVFDevices,0,0,0);
   CiHFDevMod = new TGHorizontalFrame(CiVFDevices,0,0,0);
 
-  CiPBR = new TGPictureButton(CiHFDevClas, gClient->GetPicture("icons/resistor.png"),0);
+  CiPBR = new TGPictureButton(CiHFDevClas, gClient->GetPicture("/usr/share/memcircuit/inductor.png"),0);
   CiPBR->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevClas->AddFrame(CiPBR,new TGLayoutHints(kLHintsExpandX,3,3,3,3));
   
-  CiPBL = new TGPictureButton(CiHFDevClas,gClient->GetPicture("icons/inductor.png"),1);   
+  CiPBL = new TGPictureButton(CiHFDevClas,gClient->GetPicture("/usr/share/memcircuit/inductor.png"),1);   
   CiPBL->SetState(kButtonDisabled);
   CiPBL->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevClas->AddFrame(CiPBL,new TGLayoutHints(kLHintsCenterX,3,3,3,3));  
 
-  CiPBC = new TGPictureButton(CiHFDevClas,gClient->GetPicture("icons/capacitor.png"),2);  
+  CiPBC = new TGPictureButton(CiHFDevClas,gClient->GetPicture("/usr/share/memcircuit/capacitor.png"),2);  
   CiPBC->SetState(kButtonDisabled);
   CiPBC->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevClas->AddFrame(CiPBC,new TGLayoutHints(kLHintsCenterX,3,3,3,3));  
 
-  CiPBMR = new TGPictureButton(CiHFDevMod,gClient->GetPicture("icons/memristor.png"),3);   
+  CiPBMR = new TGPictureButton(CiHFDevMod,gClient->GetPicture("/usr/share/memcircuit/memristor.png"),3);   
   CiPBMR->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevMod->AddFrame(CiPBMR,new TGLayoutHints(kLHintsCenterX,3,3,3,3));  
 
-  CiPBML = new TGPictureButton(CiHFDevMod,gClient->GetPicture("icons/meminductor.png"),4);  
+  CiPBML = new TGPictureButton(CiHFDevMod,gClient->GetPicture("/usr/share/memcircuit/meminductor.png"),4);  
   CiPBML->SetState(kButtonDisabled);
   CiPBML->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevMod->AddFrame(CiPBML,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
 
-  CiPBMC = new TGPictureButton(CiHFDevMod,gClient->GetPicture("icons/memcapacitor.png"),5);  
+  CiPBMC = new TGPictureButton(CiHFDevMod,gClient->GetPicture("/usr/share/memcircuit/memcapacitor.png"),5);  
   CiPBMC->SetState(kButtonDisabled);
   CiPBMC->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevMod->AddFrame(CiPBMC,new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
@@ -82,9 +82,9 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   CiRBSignal[1]->Connect("Clicked()","WMainApp",this,"SignalTypeSelect()");   
   CiRBSignal[2] = new TGRadioButton(CiGChSignal,"",2); //RBSignal2   -> Signal Sinuidal 
   CiRBSignal[2]->Connect("Clicked()","WMainApp",this,"SignalTypeSelect()");   
-  CiISignal_DS = new TGIcon(CiGChSignal,"icons/signal_ds.png"); 
-  CiISignal_S = new TGIcon(CiGChSignal,"icons/signal_square.png"); 
-  CiISignal_Sin = new TGIcon(CiGChSignal,"icons/signal_sin.png"); 
+  CiISignal_DS = new TGIcon(CiGChSignal,"/usr/share/memcircuit/signal_ds.png"); 
+  CiISignal_S = new TGIcon(CiGChSignal,"/usr/share/memcircuit/signal_square.png"); 
+  CiISignal_Sin = new TGIcon(CiGChSignal,"/usr/share/memcircuit/signal_sin.png"); 
 
   CiGChSignal->AddFrame(CiRBSignal[0],new TGLayoutHints(kLHintsCenterX,3,3,3,3)); 
   CiGChSignal->AddFrame(CiISignal_DS,new TGLayoutHints(kLHintsCenterX,3,10,3,3)); 

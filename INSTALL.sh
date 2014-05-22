@@ -3,6 +3,7 @@ clear
 echo "Verifying Dependencies...."
 DIR="`pwd`"
 BIN="/usr/bin"
+LOCAL="/usr/share/memcircuit"
 ans="$ROOTSYS"    
 if [ "${ans:-NULL}" = "NULL" ]; 
 then
@@ -30,15 +31,19 @@ else
 	    echo "Verifying Successful!"
 	    echo " "
 	    echo "Compiling ..."
+	    echo "For continue the installation, you need to be root user!"
+	    sudo mkdir $LOCAL
+	    sudo cp -r icons/* $LOCAL
+	    sudo chmod ugo+xwr -R $LOCAL
 	    make
 	    make clean	   
 	    echo " "
 	    echo " "
 	    echo "Compiling Successful!"
 	    echo " "
-	    echo "For you finish installation, you need to be root user!"
 	    echo "Creating link!"
-	    sudo ln -f -s $DIR/MemCircuit /usr/bin/memcircuit
+	    sudo ln -d -s -f $DIR/MemCircuit $BIN/memcircuit
+	    sudo chmod u+xwr $BIN/memcircuit
 	    echo "Installation Successful!"
 	    echo "For run MemCircuit from terminal execute:"
 	    echo "$ memcircuit"
