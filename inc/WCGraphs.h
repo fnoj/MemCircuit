@@ -34,6 +34,7 @@ Graphical Interface for creation Windows with results of analysis
 #include <TLegend.h>
 #include <TAxis.h>
 #include <TGraph.h>
+#include <TStyle.h>
 #include <TMultiGraph.h>
 #include <TGTab.h>
 #include <TGButton.h>

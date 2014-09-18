@@ -31,6 +31,7 @@ Main Graphical Interface of aplication MemCircuit
 
 #include <RQ_OBJECT.h>
 #include <TGFrame.h>
+#include <TBenchmark.h>
 #include <TBrowser.h>
 #include <TGFileDialog.h>
 #include <TGNumberEntry.h>
@@ -41,6 +42,7 @@ Main Graphical Interface of aplication MemCircuit
 #include <TGTextEntry.h>
 #include <TGIcon.h>
 #include <TGClient.h>
+#include <TStyle.h>
 #include <TApplication.h>
 #include <TBenchmark.h>
 #include <TPaveText.h>

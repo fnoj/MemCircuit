@@ -1,3 +1,29 @@
+///////////////////////////////////////////////////////////////////////////
+//                                                                       //
+// NOTICE OF COPYRIGHT                                                   //
+//                                                                       //
+//                       Copyright (C) 2014                              //
+//        John Suárez  -  Miguel Castillo  -  Julian Salamanca           //
+//                https://github.com/fnoj/MemCircuit                     //
+//                                                                       //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+//                                                                       //
+// This program is distributed in the hope that it will be useful,       //
+// but WITHOUT ANY WARRANTY; without even the implied warranty of        //
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
+// GNU General Public License for more details:                          //
+//                                                                       //
+//          http://www.gnu.org/copyleft/gpl.html                         //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
+/*
+WCGraphs.cxx
+Graphical Interface for creation Windows with results of analysis
+ */
+
 #include "WCGraphs.h"
 
 WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TString SFile){  
@@ -121,7 +147,9 @@ WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TStrin
     mg[i] = new TMultiGraph();
   }
 
-  lg=new TLegend(0.897706,0.796578,0.998088,0.996198);
+  lg=new TLegend(0.8,0.8,1,1);
+
+  //   TLegend* leg = new TLegend(0.2, 0.2, .8, .8);
 
   fWCGraphs->AddFrame(GF,new TGLayoutHints(kLHintsCenterX,3,3,3,3));
   fWCGraphs->MapSubwindows();
@@ -145,6 +173,14 @@ void WCGraphs::Draw(Int_t Color){
     infile >> x7[j];
     infile >> x8[j];
   }
+
+  gStyle->SetLabelFont(12,"xy");
+  gStyle->SetLabelSize(0.06,"xy");
+  gStyle->SetGridStyle(2);
+  gStyle->SetGridWidth(1);
+  gStyle->SetTitleFontSize(0.07);
+  gStyle->SetTitleXSize(0.05);
+  gStyle->SetTitleYSize(0.05);
 
   CGraph[0]->cd();
   CGraph[0]->SetGrid(); 

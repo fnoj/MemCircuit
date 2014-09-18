@@ -1,3 +1,29 @@
+///////////////////////////////////////////////////////////////////////////
+//                                                                       //
+// NOTICE OF COPYRIGHT                                                   //
+//                                                                       //
+//                       Copyright (C) 2014                              //
+//        John Suárez  -  Miguel Castillo  -  Julian Salamanca           //
+//                https://github.com/fnoj/MemCircuit                     //
+//                                                                       //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+//                                                                       //
+// This program is distributed in the hope that it will be useful,       //
+// but WITHOUT ANY WARRANTY; without even the implied warranty of        //
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
+// GNU General Public License for more details:                          //
+//                                                                       //
+//          http://www.gnu.org/copyleft/gpl.html                         //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
+/*
+TWire.h
+Class for draw the connection between the devices 
+ */
+
 #include "TWire.h"
 
 TWire::TWire(TCirDevice *d1, TCirDevice *d2){//--------------------------------------------> Device Device

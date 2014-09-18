@@ -1,3 +1,29 @@
+///////////////////////////////////////////////////////////////////////////
+//                                                                       //
+// NOTICE OF COPYRIGHT                                                   //
+//                                                                       //
+//                       Copyright (C) 2014                              //
+//        John Suárez  -  Miguel Castillo  -  Julian Salamanca           //
+//                https://github.com/fnoj/MemCircuit                     //
+//                                                                       //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+//                                                                       //
+// This program is distributed in the hope that it will be useful,       //
+// but WITHOUT ANY WARRANTY; without even the implied warranty of        //
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
+// GNU General Public License for more details:                          //
+//                                                                       //
+//          http://www.gnu.org/copyleft/gpl.html                         //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
+/*
+WMainApp.cxx
+Main Graphical Interface of aplication MemCircuit
+ */
+
 #include "WMainApp.h"
 
 using namespace std;
@@ -30,7 +56,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   CiHFDevClas = new TGHorizontalFrame(CiVFDevices,0,0,0);
   CiHFDevMod = new TGHorizontalFrame(CiVFDevices,0,0,0);
 
-  CiPBR = new TGPictureButton(CiHFDevClas, gClient->GetPicture("/usr/share/memcircuit/inductor.png"),0);
+  CiPBR = new TGPictureButton(CiHFDevClas, gClient->GetPicture("/usr/share/memcircuit/resistor.png"),0);
   CiPBR->Connect("Clicked()","WMainApp",this,"CiDraw()");
   CiHFDevClas->AddFrame(CiPBR,new TGLayoutHints(kLHintsExpandX,3,3,3,3));
   
