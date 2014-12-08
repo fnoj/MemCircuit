@@ -3,7 +3,11 @@
 // NOTICE OF COPYRIGHT                                                   //
 //                                                                       //
 //                       Copyright (C) 2014                              //
-//        John Suárez  -  Miguel Castillo  -  Julian Salamanca           //
+//        John Suárez¹  -  Miguel Castillo²  -  Julian Salamanca³        //
+//      ¹²³Grupo de Física e Informática (FISINFOR) Universidad          //
+//                  Distrital Francisco José de Caldas                   //
+//                                                                       //
+//                                                                       //
 //                https://github.com/fnoj/MemCircuit                     //
 //                                                                       //
 // This program is free software; you can redistribute it and/or modify  //
@@ -16,7 +20,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 // GNU General Public License for more details:                          //
 //                                                                       //
-//          http://www.gnu.org/copyleft/gpl.html                         //
+//               http://www.gnu.org/copyleft/gpl.html                    //
 //                                                                       //
 ///////////////////////////////////////////////////////////////////////////
 /*

@@ -1,8 +1,8 @@
 MEMCIRCUITDIR = ./
 TARGET = MemCircuit
 CXX = g++
-CFLAGS = -c -Wall `root-config --cflags` -I./inc/
-LFLAGS =  `root-config --glibs` -lXMLIO
+CFLAGS = -c  `root-config --cflags` -I./inc/
+LFLAGS =  `root-config --glibs` 
 INCDIR = $(MEMCIRCUITDIR)/inc
 SRCDIR = $(MEMCIRCUITDIR)/src
 
@@ -35,5 +35,5 @@ Dict.o : Dict.cxx
 clean:
 	rm -f *.o Dict.cxx Dict.h
 
-install: 
-	cp MemCircuit ~/Desktop
+install:
+	sh INSTALL.sh

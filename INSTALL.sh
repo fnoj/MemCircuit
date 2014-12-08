@@ -52,7 +52,7 @@ else
 	    sudo chmod ugo+xwr -R $LOCAL
 	    sudo chmod u+xwr $BIN/memcircuit
 	    echo "Installation Successful!"
-	    echo "For run MemCircuit from terminal execute:"
+	    echo "For running MemCircuit from terminal execute:"
 	    echo "$ memcircuit"
 	fi
     fi

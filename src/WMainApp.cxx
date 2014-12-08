@@ -3,7 +3,11 @@
 // NOTICE OF COPYRIGHT                                                   //
 //                                                                       //
 //                       Copyright (C) 2014                              //
-//        John Suárez  -  Miguel Castillo  -  Julian Salamanca           //
+//        John Suárez¹  -  Miguel Castillo²  -  Julian Salamanca³        //
+//      ¹²³Grupo de Física e Informática (FISINFOR) Universidad          //
+//                  Distrital Francisco José de Caldas                   //
+//                                                                       //
+//                                                                       //
 //                https://github.com/fnoj/MemCircuit                     //
 //                                                                       //
 // This program is free software; you can redistribute it and/or modify  //
@@ -16,7 +20,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         //
 // GNU General Public License for more details:                          //
 //                                                                       //
-//          http://www.gnu.org/copyleft/gpl.html                         //
+//               http://www.gnu.org/copyleft/gpl.html                    //
 //                                                                       //
 ///////////////////////////////////////////////////////////////////////////
 /*
@@ -36,7 +40,7 @@ WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variab
   TMF1 = new TGMainFrame(p,w,h);
   TMF1->SetWindowName("MemCircuit");
   TMF1->SetCleanup(kDeepCleanup);
-  TMF1->SetIconPixmap("/usr/share/memcircuit/icon_memcircuit.eps");
+  TMF1->SetIconPixmap("/usr/share/memcircuit/icon_memcircuit.png");
   TMF1->SetIconName("MemCircuit");
   TMF1->SetWMSizeHints(w,h,w,h,1,1);
     
