@@ -32,7 +32,7 @@ Main Graphical Interface of aplication MemCircuit
 
 using namespace std;
 
-WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("mem.m"), variables("var.mat"){
+WMainApp::WMainApp(const TGWindow *p,UInt_t w,UInt_t h): script("/tmp/mem.m"), variables("/tmp/var.mat"){
   
   Cil1 = new TGLayoutHints(kLHintsExpandX | kLHintsExpandY ,2,2,2,2);
   Cil2 = new TGLayoutHints(kLHintsCenterX | kLHintsCenterY ,2,2,2,2);
@@ -601,7 +601,7 @@ void WMainApp::ClearScript(){
 void WMainApp::CiClear(){
   WMainApp::ClearScript();
   variables.close();
-  variables.open("var.mat"); 
+  variables.open("/tmp/var.mat"); 
   CCircuit->SetEditable(true);
   kDevice=0;
   kMesh=0;
@@ -646,7 +646,7 @@ void WMainApp::Run(){
     WMainApp::SaveVariables(); 
     f = save->Getfff(); 
     V = save->GetfVf();   
-    script << "load var.mat;"<<endl;
+    script << "load /tmp/var.mat;"<<endl;
     WMainApp::CreateScript();
   }
 }
@@ -947,9 +947,9 @@ void WMainApp::CreateScript(){
       script<<"w=[w,y];"<<endl;
     }
   }
-  script << " delete dtest.dat"<<endl;
-  script << "dlmwrite('dtest.dat',w,' ');\n"<<endl;
-  system("octave -q mem.m");  //Execute Script Octave */
+  script << " delete /tmp/dtest.dat"<<endl;
+  script << "dlmwrite('/tmp/dtest.dat',w,' ');\n"<<endl;
+  system("octave -q /tmp/mem.m");  //Execute Script Octave */
 
 
   if(kColor==1){

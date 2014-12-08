@@ -4,6 +4,7 @@ echo "Verifying Dependencies...."
 DIR="`pwd`"
 BIN="/usr/bin"
 LOCAL="/usr/share/memcircuit"
+LAUNCHER="/home/$USER/.local/share/applications"
 ans="find /usr/bin/ -iname root*"    
 if [ "${ans:-NULL}" = "NULL" ]; 
 then
@@ -48,9 +49,12 @@ else
 	    echo "Creating link!"
 	    sudo cp -r $DIR/MemCircuit $LOCAL/memcircuit
 	    sudo ln -d -s -f $LOCAL/memcircuit $BIN/memcircuit
+	    sudo cp $DIR/files/memcircuit.desktop $LAUNCHER/
 #Add Permisions 	    
 	    sudo chmod ugo+xwr -R $LOCAL
 	    sudo chmod u+xwr $BIN/memcircuit
+	    sudo chmod u+xwr $BIN/memcircuit
+	    sudo chmod a+wxr $LAUNCHER/memcircuit.desktop
 	    echo "Installation Successful!"
 	    echo "For running MemCircuit from terminal execute:"
 	    echo "$ memcircuit"

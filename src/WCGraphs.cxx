@@ -162,7 +162,7 @@ WCGraphs::WCGraphs(const TGWindow *p,const TGWindow *main, Bool_t fWrite, TStrin
 void WCGraphs::Draw(Int_t Color){
   ifstream infile;
   sprintf(LabelGraph,"f:%4.2f[Hz] V:%4.2f[V]",ff,fV); 
-  infile.open("dtest.dat");
+  infile.open("/tmp/dtest.dat");
   
   Int_t j=0;
   while(!infile.eof()){
