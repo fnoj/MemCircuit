@@ -4,6 +4,11 @@
 //                                                                       //
 //                       Copyright (C) 2014                              //
 //        John Suárez¹  -  Miguel Castillo²  -  Julian Salamanca³        //
+//                                                                       //
+//                jfsuarezp@correo.udistrital.edu.co¹                    //
+//                    mfcastillo@fis.cinvestav.mx²                       //
+//               jasalamanca@correo.udistrital.edu.co³                   //
+//                                                                       //
 //      ¹²³Grupo de Física e Informática (FISINFOR) Universidad          //
 //                  Distrital Francisco José de Caldas                   //
 //                                                                       //
@@ -23,6 +28,7 @@
 //               http://www.gnu.org/copyleft/gpl.html                    //
 //                                                                       //
 ///////////////////////////////////////////////////////////////////////////
+
 
 #ifdef __CINT__
 #include "TCirDevice.h"
