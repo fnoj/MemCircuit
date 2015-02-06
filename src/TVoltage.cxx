@@ -7,7 +7,7 @@
 //                                                                       //
 //                jfsuarezp@correo.udistrital.edu.co¹                    //
 //                    mfcastillo@fis.cinvestav.mx²                       //
-//                   jusalamanca@udistrital.edu.co³                      //
+//                   jasalamanca@udistrital.edu.co³                      //
 //                                                                       //
 //      ¹²³Grupo de Física e Informática (FISINFOR) Universidad          //
 //                  Distrital Francisco José de Caldas                   //
